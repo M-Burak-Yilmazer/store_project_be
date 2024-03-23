@@ -1,71 +1,61 @@
 "use strict";
 
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const productsCategorySchema = new mongoose.Schema(
-  { name: { type: String, required: true, trim: true } },
-  { collection: "productsCategory", timestamps: true }
-);
+const { isURL } = require("validator");
 
-const productsSchema = new mongoose.Schema(
+const ProductSchema = new Schema(
   {
+    categoryId: {
+      type: Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
     title: {
       type: String,
       trim: true,
       required: [true, "Title is required"],
     },
-    productCategoryId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "productsCategory",
-      required: true,
-    },
     description: {
       type: String,
-      required: [true, "Description is required"],
       trim: true,
+      required: [true, "Description is required"],
     },
     price: {
       type: Number,
-      trim: true,
       required: [true, "Price is required"],
+    },
+    discountPercentage: {
+      type: Number,
+      required: false,
     },
     rating: {
       type: Number,
-      required: true,
-      trim: true,
+      required: false,
     },
     stock: {
       type: Number,
-      required: true,
       trim: true,
+      required: true,
     },
+    brand: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+
     thumbnail: {
       type: String,
       required: true,
-      trim: true,
+      validate: [isURL, "Please enter a valid URL"],
     },
-    image: [
+    images: [
       {
         type: String,
-        required: true,
-        trim: true,
+        validate: [isURL, "Please enter a valid URL"],
       },
     ],
-
-    discountPercentage: { type: Number, required: true, trim: true },
-    brand: {
-      type: String,
-      required: true,
-      trim: true,
-    },
   },
-  {
-    collection: "products",
-    timestamps: true,
-  }
+  { collection: "Products", timestamps: true }
 );
-
-module.exports= {
-    ProductsCategory: mongoose.model("ProductsCategory", productsCategorySchema),
-    Products:mongoose.model("Products",productsSchema)
-}
+module.exports= model("Product", ProductSchema)
