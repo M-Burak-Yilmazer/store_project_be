@@ -17,7 +17,9 @@ app.all("/", (req, res) => {
   res.send("INDEX PAGE");
 });
 
+//Routes
 app.use("/products", require("./src/routes/productRoutes"));
+app.use("/users", require("./src/routes/userRoutes"));
 
 app.use(require("./src/errors/errorHandler"));
 
