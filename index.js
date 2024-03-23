@@ -13,13 +13,22 @@ require("./src/config/dbConnection");
 //*get the dummy data
 // require("./src/dataSync")();
 
+//middlewares
+app.use(require("./src/middlewares/query"));
+
+app.use(require("./src/middlewares/authentication"));
+
 app.all("/", (req, res) => {
-  res.send("INDEX PAGE");
+  console.log(req.user);
+  res.send({
+    error: false,
+    message: "Welcome To Store Api",
+    user: req.user,
+  });
 });
 
 //Routes
-app.use("/products", require("./src/routes/productRoutes"));
-app.use("/users", require("./src/routes/userRoutes"));
+app.use(require("./src/routes"));
 
 app.use(require("./src/errors/errorHandler"));
 

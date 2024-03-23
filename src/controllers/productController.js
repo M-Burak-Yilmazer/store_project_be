@@ -6,9 +6,11 @@ const ProductCategory = require("../models/categoryModel");
 
 const ProductController = {
   list: async (req, res) => {
-    const data = await Product.find();
+    const data = await res.getModelList(Product, {}, "categoryId");
+    // const data = await Product.find();
     res.status(200).send({
       error: false,
+      detail: await res.getModelListDetails(Product),
       data: data,
     });
   },
@@ -47,9 +49,12 @@ const ProductController = {
 };
 const ProductCategoryController = {
   list: async (req, res) => {
-    const data = await ProductCategory.find();
+    const data = await res.getModelList(ProductCategory);
+
+    // const data = await ProductCategory.find();
     res.status(200).send({
       error: false,
+      details: await res.getModelListDetails(ProductCategory),
       data: data,
     });
   },
@@ -88,6 +93,24 @@ const ProductCategoryController = {
       _id: req.params.categoryId,
     });
     res.sendStatus(data.deletedCount >= 1 ? 204 : 404);
+  },
+  products: async (req, res) => {
+    const data = await res.getModelList(
+      Product,
+      {
+        categoryId: req.params.categoryId,
+      },
+      "categoryId"
+    );
+    res.status(200).send({
+      error: false,
+      detail: await res.getModelListDetails(
+        Product,
+        { categoryId: req.params.categoryId },
+        "categoryId"
+      ),
+      data,
+    });
   },
 };
 

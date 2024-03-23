@@ -16,12 +16,17 @@ router
   .get(ProductCategoryController.read)
   .put(ProductCategoryController.update)
   .delete(ProductCategoryController.delete);
-  
+
 router.route("/").get(ProductController.list).post(ProductController.create);
 router
   .route("/:productId")
   .get(ProductController.read)
   .put(ProductController.update)
   .delete(ProductController.delete);
+
+router.get(
+  "/categories/:categoryId/products",
+  ProductCategoryController.products
+);
 
 module.exports = router;
