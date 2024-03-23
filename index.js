@@ -10,6 +10,9 @@ app.use(express.json());
 
 require("./src/config/dbConnection");
 
+//*get the dummy data
+// require("./src/dataSync")();
+
 app.all("/", (req, res) => {
   res.send("INDEX PAGE");
 });
