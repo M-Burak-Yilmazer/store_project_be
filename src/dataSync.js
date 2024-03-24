@@ -4,6 +4,7 @@ const axios = require("axios");
 
 const Product = require("./models/productModel");
 const Category = require("./models/categoryModel");
+const User = require("./models/userModel");
 
 let categoryData = [];
 let productData = [];
@@ -39,6 +40,12 @@ const getCategoryAndProductData = async () => {
       }
     })
   );
+
+  await User.create({
+    email: "admin@aa.com",
+    password: "admin",
+  });
+  console.log("user ")
   // add the dummy data to model
 
   // const createCategory = async ()=>{
@@ -50,7 +57,7 @@ const getCategoryAndProductData = async () => {
 async function cleanCollections() {
   await Category.deleteMany({}).then(() => console.log("category deleted")); // Kategorileri temizler
   await Product.deleteMany({}).then(() => console.log("Product deleted")); // Urunleri temizler
-  //   await User.deleteMany({}); // Kullanıcıları temizler
+  await User.deleteMany({}).then(() => console.log("user deleted")); // Kullanıcıları temizler
 }
 
 module.exports = async () => {

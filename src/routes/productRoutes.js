@@ -1,6 +1,7 @@
 "use strict";
 
 const router = require("express").Router();
+const permission= require("../middlewares/permission")
 
 const {
   ProductController,
@@ -17,7 +18,7 @@ router
   .put(ProductCategoryController.update)
   .delete(ProductCategoryController.delete);
 
-router.route("/").get(ProductController.list).post(ProductController.create);
+router.route("/").get(permission.isLogin, ProductController.list).post(ProductController.create);
 router
   .route("/:productId")
   .get(ProductController.read)

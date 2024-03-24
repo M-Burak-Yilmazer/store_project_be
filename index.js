@@ -19,7 +19,6 @@ app.use(require("./src/middlewares/query"));
 app.use(require("./src/middlewares/authentication"));
 
 app.all("/", (req, res) => {
-  console.log(req.user);
   res.send({
     error: false,
     message: "Welcome To Store Api",
