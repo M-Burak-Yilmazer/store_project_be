@@ -13,6 +13,36 @@ require("./src/config/dbConnection");
 //*get the dummy data
 // require("./src/dataSync")();
 
+
+
+// //? Json
+// const swaggerJson = require("./swagger.json");
+// app.use("/documents/json", (req, res) => {
+//   res.sendFile("swagger.json", { root: "." });
+// });
+// //?SWAGGER
+
+const swaggerUi = require("swagger-ui-express");
+const swaggerJson = require("./swagger.json");
+app.use(
+  "/documents/swagger",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerJson, {
+    swaggerOptions: { persistAuthorization: true },
+  })
+);
+
+
+
+// const swaggerUi = require("swagger-ui-express");
+// app.use(
+//   "/documents/swagger",
+//   swaggerUi.serve,
+//   swaggerUi.setup(swaggerJson, {
+//     swaggerOptions: { persistAuthorization: true },
+//   })
+// );
+
 //middlewares
 app.use(require("./src/middlewares/query"));
 app.use(require("./src/middlewares/logging"));
