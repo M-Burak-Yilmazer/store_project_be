@@ -5,7 +5,21 @@ const Product = require("../models/productModel");
 
 const ProductController = {
 
+
+
   list: async (req, res) => {
+    /*
+            #swagger.tags = ["Products"]
+            #swagger.summary = "List Products"
+            #swagger.description = `
+                You can send query with endpoint for search[], sort[], page and limit.
+                <ul> Examples:
+                    <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>
+                    <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>
+                    <li>URL/?<b>page=2&limit=1</b></li>
+                </ul>
+            `
+        */
     const data = await res.getModelList(Product, {}, "categoryId");
     // const data = await Product.find();
     res.status(200).send({

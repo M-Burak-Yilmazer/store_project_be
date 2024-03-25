@@ -5,6 +5,10 @@ const Token = require("../models/tokenModel");
 
 module.exports = {
   list: async (req, res) => {
+    /*
+            _swagger.deprecated = true
+            #swagger.ignore = true
+        */
     const data = await Token.find();
     res.status(200).send({
       error: false,
@@ -12,6 +16,10 @@ module.exports = {
     });
   },
   create: async (req, res) => {
+    /*
+            _swagger.deprecated = true
+            #swagger.ignore = true
+        */
     const data = await Token.create(req.body);
     res.status(201).send({
       error: false,
@@ -20,6 +28,10 @@ module.exports = {
     });
   },
   read: async (req, res) => {
+    /*
+            _swagger.deprecated = true
+            #swagger.ignore = true
+        */
     const data = await Token.findOne({ _id: req.params.tokenId });
     res.status(202).send({
       error: false,
@@ -27,6 +39,10 @@ module.exports = {
     });
   },
   update: async (req, res) => {
+    /*
+            _swagger.deprecated = true
+            #swagger.ignore = true
+        */
     const data = await Token.updateOne({ _id: req.params.tokenId }, req.body, {
       runValidators: true,
     });
@@ -39,6 +55,10 @@ module.exports = {
     });
   },
   delete: async (req, res) => {
+    /*
+            _swagger.deprecated = true
+            #swagger.ignore = true
+        */
     const data = await Token.deleteOne({ _id: req.params.tokenId });
     res.sendStatus(data.deletedCount >= 1 ? 204 : 404);
   },
