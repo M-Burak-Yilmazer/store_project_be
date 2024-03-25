@@ -2,14 +2,15 @@
 
 const router = require("express").Router();
 const User = require("../controllers/userController");
+const Permissions = require("../middlewares/permission.js");
 
-router.route("/").get(User.list).post(User.create);
+router.route("/").get(Permissions.isAdmin, User.list).post(User.create);
 
 router
   .route("/:userId")
-  .get(User.read)
-  .put(User.update)
-  .patch(User.update)
-  .delete(User.delete);
+  .get(Permissions.isAdminOrOwn, User.read)
+  .put(Permissions.isAdminOrOwn, User.update)
+  .patch(Permissions.isAdminOrOwn, User.update)
+  .delete(Permissions.isAdmin, User.delete);
 
 module.exports = router;

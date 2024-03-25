@@ -10,20 +10,23 @@ const {
 
 router
   .route("/categories")
-  .get(ProductCategoryController.list)
-  .post(ProductCategoryController.create);
+  .get(permission.isLogin,ProductCategoryController.list)
+  .post(permission.isAdmin, ProductCategoryController.create);
 router
   .route("/categories/:categoryId")
-  .get(ProductCategoryController.read)
-  .put(ProductCategoryController.update)
-  .delete(ProductCategoryController.delete);
+  .get(permission.isLogin, ProductCategoryController.read)
+  .put(permission.isAdmin, ProductCategoryController.update)
+  .delete(permission.isAdmin, ProductCategoryController.delete);
 
-router.route("/").get(permission.isLogin, ProductController.list).post(ProductController.create);
+router
+  .route("/")
+  .get(permission.isLogin, ProductController.list)
+  .post(permission.isAdmin, ProductController.create);
 router
   .route("/:productId")
-  .get(ProductController.read)
-  .put(ProductController.update)
-  .delete(ProductController.delete);
+  .get(permission.isLogin, ProductController.read)
+  .put(permission.isAdmin, ProductController.update)
+  .delete(permission.isAdmin, ProductController.delete);
 
 router.get(
   "/categories/:categoryId/products",
