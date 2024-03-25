@@ -1,16 +1,14 @@
 "use strict";
 
 const router = require("express").Router();
-const permission= require("../middlewares/permission")
+const permission = require("../middlewares/permission");
 
-const {
-  ProductController,
-  ProductCategoryController,
-} = require("../controllers/productController");
+const ProductController = require("../controllers/productController");
+const ProductCategoryController = require("../controllers/categoryController");
 
 router
   .route("/categories")
-  .get(permission.isLogin,ProductCategoryController.list)
+  .get(permission.isLogin, ProductCategoryController.list)
   .post(permission.isAdmin, ProductCategoryController.create);
 router
   .route("/categories/:categoryId")

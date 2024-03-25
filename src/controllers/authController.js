@@ -6,6 +6,20 @@ const User = require("../models/userModel");
 
 module.exports = {
   login: async (req, res) => {
+    /**
+           *~  #swagger.tags = ['Authentication']
+           *~  #swagger.summary = 'Login'
+           *~  #swagger.description = 'Login with username and password'
+           *~  #swagger.parameters['body'] = {
+              in: 'body',
+              required: 'true',
+              schema: {
+                  email: 'testF0',
+                  password:'1234'
+              }
+          }
+           */
+
     const { email, password } = req.body;
 
     if (email && password) {
@@ -28,7 +42,15 @@ module.exports = {
     }
   },
   logout: async (req, res) => {
-    
+    /*
+
+ #swagger.tags= ["Authentication"]
+#swagger.summary= "Logout/Delete User" 
+
+
+
+*/
+
     // const deleted = await Token.deletedOne({ userId: req.user._id });
 
     const auth = req.headers?.authorization || null;

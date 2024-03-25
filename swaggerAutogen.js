@@ -57,7 +57,7 @@ const document = {
   security: [{ Token: [] }],
   definitions: {
     "/auth/login": {
-      username: {
+      email: {
         type: "String",
         required: true,
       },

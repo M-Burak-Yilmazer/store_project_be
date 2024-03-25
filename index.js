@@ -13,13 +13,11 @@ require("./src/config/dbConnection");
 //*get the dummy data
 // require("./src/dataSync")();
 
-
-
 // //? Json
 // const swaggerJson = require("./swagger.json");
-// app.use("/documents/json", (req, res) => {
-//   res.sendFile("swagger.json", { root: "." });
-// });
+app.use("/documents/json", (req, res) => {
+  res.sendFile("swagger.json", { root: "." });
+});
 // //?SWAGGER
 
 const swaggerUi = require("swagger-ui-express");
@@ -32,7 +30,15 @@ app.use(
   })
 );
 
-
+//? REDOC:
+const redoc = require("redoc-express");
+app.use(
+  "/documents/redoc",
+  redoc({
+    title: "PersonnelAPI",
+    specUrl: "/documents/json",
+  })
+);
 
 // const swaggerUi = require("swagger-ui-express");
 // app.use(

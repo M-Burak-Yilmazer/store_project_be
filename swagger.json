@@ -30,19 +30,26 @@
   "paths": {
     "/auth/login": {
       "post": {
-        "description": "",
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login",
+        "description": "Login with username and password",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "testF0"
                 },
                 "password": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "1234"
                 }
               }
             }
@@ -57,6 +64,10 @@
     },
     "/auth/logout": {
       "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Logout/Delete User",
         "description": "",
         "responses": {
           "200": {
@@ -67,6 +78,10 @@
     },
     "/users/": {
       "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "List Users",
         "description": "",
         "responses": {
           "200": {
@@ -75,7 +90,31 @@
         }
       },
       "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create Users",
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "test@abc.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "1234"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -85,6 +124,10 @@
     },
     "/users/{userId}": {
       "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Single User",
         "description": "",
         "parameters": [
           {
@@ -101,6 +144,10 @@
         }
       },
       "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update Users",
         "description": "",
         "parameters": [
           {
@@ -108,6 +155,24 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "updatedemail@abc.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "1234"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -117,6 +182,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete User",
         "description": "",
         "parameters": [
           {
@@ -136,6 +205,10 @@
         }
       },
       "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update Users",
         "description": "",
         "parameters": [
           {
@@ -143,6 +216,24 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "updatedemail@abc.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "1234"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -154,7 +245,11 @@
     },
     "/products/categories": {
       "get": {
-        "description": "",
+        "tags": [
+          "Category"
+        ],
+        "summary": "List Category",
+        "description": "\r  You can send query with endpoint for search[], sort[], page and limit.\r  <ul> Examples:\r   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>\r   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>\r   <li>URL/?<b>page=2&limit=1</b></li>\r  </ul>\r  ",
         "responses": {
           "200": {
             "description": "OK"
@@ -162,7 +257,27 @@
         }
       },
       "post": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Create Category",
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Test Category"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -172,6 +287,10 @@
     },
     "/products/categories/{categoryId}": {
       "get": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Get Single Category",
         "description": "",
         "parameters": [
           {
@@ -188,6 +307,10 @@
         }
       },
       "put": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Update Category",
         "description": "",
         "parameters": [
           {
@@ -195,6 +318,20 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Test Category"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -204,6 +341,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Delete Category",
         "description": "",
         "parameters": [
           {
@@ -233,7 +374,63 @@
         }
       },
       "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Create Product",
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "create 9"
+                },
+                "categoryId": {
+                  "type": "string",
+                  "example": "testnumber"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Create the description"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 549
+                },
+                "discountPercentage": {
+                  "type": "number",
+                  "example": 12.96
+                },
+                "rating": {
+                  "type": "number",
+                  "example": 4.69
+                },
+                "stock": {
+                  "type": "number",
+                  "example": 94
+                },
+                "brand": {
+                  "type": "string",
+                  "example": "Apple"
+                },
+                "thumbnail": {
+                  "type": "string",
+                  "example": "testurl.jpg"
+                },
+                "images": {
+                  "type": "string",
+                  "example": "testurl.jpg"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -243,6 +440,10 @@
     },
     "/products/{productId}": {
       "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get Single Product",
         "description": "",
         "parameters": [
           {
@@ -259,6 +460,10 @@
         }
       },
       "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Update Product",
         "description": "",
         "parameters": [
           {
@@ -266,6 +471,56 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "update 9"
+                },
+                "categoryId": {
+                  "type": "string",
+                  "example": "testnumber"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Updtae the description"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 549
+                },
+                "discountPercentage": {
+                  "type": "number",
+                  "example": 12.96
+                },
+                "rating": {
+                  "type": "number",
+                  "example": 4.69
+                },
+                "stock": {
+                  "type": "number",
+                  "example": 94
+                },
+                "brand": {
+                  "type": "string",
+                  "example": "Apple"
+                },
+                "thumbnail": {
+                  "type": "string",
+                  "example": "testurl.jpg"
+                },
+                "images": {
+                  "type": "string",
+                  "example": "testurl.jpg"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -275,6 +530,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Delete Products",
         "description": "",
         "parameters": [
           {
@@ -296,6 +555,10 @@
     },
     "/products/categories/{categoryId}/products": {
       "get": {
+        "tags": [
+          "Category"
+        ],
+        "summary": "Products of Category",
         "description": "",
         "parameters": [
           {
@@ -404,7 +667,7 @@
     "/auth/login": {
       "type": "object",
       "properties": {
-        "username": {
+        "email": {
           "type": "object",
           "properties": {
             "type": {
