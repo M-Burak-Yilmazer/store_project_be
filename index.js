@@ -51,7 +51,7 @@ app.use(
 
 //middlewares
 app.use(require("./src/middlewares/query"));
-app.use(require("./src/middlewares/logging"));
+// app.use(require("./src/middlewares/logging"));
 
 app.use(require("./src/middlewares/authentication"));
 
